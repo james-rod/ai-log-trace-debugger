@@ -1,0 +1,68 @@
+.page {
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1f);
+  gap: 16px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(124, 92, 255, 0.55);
+  background: rgba(124, 92, 255, 0.18);
+  color: rgba(196, 185, 255, 1);
+  font-weight: 950;
+  text-decoration: none;
+}
+
+.primaryBtn:hover {
+  border-color: rgba(124, 92, 255, 0.75);
+  background: rgba(124, 92, 255, 0.24);
+}
+
+.secondaryBtn {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.secondaryBtn:hover {
+  border-color: rgba(124, 92, 255, 0.55);
+}

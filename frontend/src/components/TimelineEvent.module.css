@@ -1,0 +1,122 @@
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.time {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.pillLog {
+  background: rgba(124, 92, 255, 0.12);
+  border-color: rgba(124, 92, 255, 0.35);
+  color: rgba(196, 185, 255, 1);
+}
+
+.pillStep {
+  background: rgba(52, 152, 219, 0.12);
+  border-color: rgba(52, 152, 219, 0.35);
+  color: rgba(155, 216, 255, 1);
+}
+
+.pillInfo {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pillWarn {
+  background: rgba(241, 196, 15, 0.12);
+  border-color: rgba(241, 196, 15, 0.35);
+  color: rgba(241, 196, 15, 1);
+}
+
+.pillError {
+  background: rgba(231, 76, 60, 0.12);
+  border-color: rgba(231, 76, 60, 0.35);
+  color: rgba(231, 76, 60, 1);
+}
+
+.muted {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.metric {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.title {
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--muted);
+}
+
+.body {
+  white-space: pre-wrap;
+  line-height: 1.45;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pre {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.35;
+  padding: 10px 12px;
+  border-radius: 12px;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+}
+
+.errorBox {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(231, 76, 60, 0.35);
+  background: rgba(231, 76, 60, 0.1);
+  color: rgba(231, 76, 60, 1);
+  white-space: pre-wrap;
+}

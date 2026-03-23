@@ -1,0 +1,183 @@
+.page {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.headerLeft {
+  display: grid;
+  gap: 6px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.backLink {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bolder;
+}
+
+.sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.dot {
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.btn:hover {
+  border-color: rgba(124, 92, 255, 0.55);
+}
+
+.metrics {
+  display: block;
+}
+
+.timelineCard {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.timelineHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.sectionTitle {
+  font-weight: 950;
+}
+
+.sectionSub {
+  opacity: 0.75;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.count {
+  opacity: 0.75;
+  font-size: 13px;
+}
+
+.sep {
+  height: 12px;
+}
+.events {
+  display: grid;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.eventWrap {
+  scroll-margin-top: 90px;
+}
+
+.eventHighlight {
+  outline: 2px solid rgba(124, 92, 255, 0.75);
+  border-radius: 18px;
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.18);
+  transition:
+    outline 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--muted);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: help;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Match TimelineEvent colors */
+.legendLog {
+  background: #6aa9ff; /* blue */
+}
+
+.legendStep {
+  background: #9b8cff; /* purple */
+}
+
+.legendError {
+  background: #ff6b6b; /* red */
+}
+
+.legendItem:hover {
+  color: var(--text);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

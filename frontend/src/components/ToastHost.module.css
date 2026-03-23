@@ -1,0 +1,39 @@
+.stack {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  min-width: 240px;
+  max-width: 360px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 900;
+  font-size: 13px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+}
+
+.success {
+  border-color: rgba(46, 204, 113, 0.45);
+  background: rgba(46, 204, 113, 0.1);
+  color: #d0ffe9;
+}
+
+.error {
+  border-color: rgba(231, 76, 60, 0.45);
+  background: rgba(231, 76, 60, 0.1);
+  color: #ffd5d5;
+}
+
+.info {
+  border-color: rgba(124, 92, 255, 0.45);
+  background: rgba(124, 92, 255, 0.1);
+  color: #e4e0ff;
+}
