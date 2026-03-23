@@ -1,0 +1,155 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+    id             String             @id  @default(uuid())
+    email          String             @unique
+    password       String 
+    name           String?
+
+    trace          Trace[]
+    logs           Log[]  
+    
+    createdAt      DateTime           @default(now())
+    updatedAt      DateTime           @updatedAt
+}
+
+// ================================
+// Trace (One AI Execution)
+// “User ran an AI agent once”
+// ================================
+
+model Trace {
+    id             String             @id @default(uuid())
+    userId         String
+    name           String? 
+    status         TraceStatus        @default(SUCCESS)
+
+    steps          TraceStep[]
+    logs           Log[]
+    metrics        Metric?
+    analysis       TraceAnalysis?
+
+    createdAt      DateTime           @default(now())
+    updatedAt      DateTime      @updatedAt
+
+    deletedAt      DateTime?  // ✅ soft delete flag
+
+    user           User               @relation(fields: [userId], references: [id])
+
+}
+
+// ================================
+// TraceStep (Each AI Step)
+// Everything the AI did
+// ================================
+
+model TraceStep {
+    id             String             @id @default(uuid()) 
+    traceId        String
+
+    stepIndex      Int
+    stepType       StepType
+
+    prompt         String?
+    response       String?
+
+    toolName       String?
+    toolInput      Json?
+    toolOutput     Json?
+
+    retrievedDocs  Json?
+
+    latencyMs      Int?
+    tokenUsage     Int?
+
+    errorMessage   String?
+
+    createdAt      DateTime          @default(now())
+
+    trace          Trace             @relation(fields: [traceId], references: [id])
+}
+
+// ================================
+// Raw Logs (Uploaded or Captured)
+// ================================
+
+model Log {
+    id             String            @id @default(uuid())
+    userId         String            
+    traceId        String?
+
+    source         String?
+    level          LogLevel
+    message        String
+    metadata       Json?
+
+    createdAt      DateTime          @default(now())
+
+    user           User              @relation(fields: [userId], references: [id])
+    trace          Trace?            @relation(fields: [traceId], references: [id])
+}
+
+// ================================
+// Metrics (Performance + Cost)
+// “Which step is slow?”
+// ================================
+
+model Metric {
+    id             String            @id @default(uuid())
+    traceId        String            @unique
+
+    totalLatency   Int?
+    totalTokens    Int?
+    estimatedCost  Float?
+
+    createdAt      DateTime          @default(now())
+
+    trace          Trace             @relation(fields: [traceId], references: [id])
+}
+
+model TraceAnalysis {
+  id         String   @id @default(uuid())
+  traceId    String   @unique
+
+  // AI output
+  diagnosis  Json
+  model      String
+  promptVer  String?  // optional: track prompt template version
+
+  // Basic tracking
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  trace      Trace    @relation(fields: [traceId], references: [id], onDelete: Cascade)
+}
+
+
+enum StepType {
+PROMPT
+LLM_CALL
+TOOL_CALL
+RETRIEVAL
+EMBEDDING
+FUNCTION_CALL
+ERROR
+}
+
+
+enum TraceStatus {
+SUCCESS
+FAILED
+}
+
+
+enum LogLevel {
+INFO
+WARN
+ERROR
+}
