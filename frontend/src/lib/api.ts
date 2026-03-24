@@ -6,8 +6,7 @@ const API_BASE =
 function offlineHint() {
   return (
     "Backend may be offline. " +
-    "Check that the backend is running and that " +
-    "http://127.0.0.1:4000/health is reachable."
+    `Check that the backend is running and that ${API_BASE}/health is reachable.`
   );
 }
 
