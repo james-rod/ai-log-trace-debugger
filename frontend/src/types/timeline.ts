@@ -10,6 +10,18 @@ export type StepType =
 
 export type LogLevel = "INFO" | "WARNING" | "ERROR";
 
+export type JsonValue =
+  | string
+  | number
+  | boolean
+  | null
+  | JsonObject
+  | JsonValue[];
+
+export type JsonObject = {
+  [key: string]: JsonValue;
+};
+
 export type TraceStep = {
   id: string;
   traceId: string;
@@ -20,10 +32,10 @@ export type TraceStep = {
   response: string | null;
 
   toolName: string | null;
-  toolInput: any | null;
-  toolOutput: any | null;
+  toolInput: JsonValue | null;
+  toolOutput: JsonValue | null;
 
-  retrievedDocs: any | null;
+  retrievedDocs: JsonValue | null;
 
   latencyMs: number | null;
   tokenUsage: number | null;
@@ -42,7 +54,7 @@ export type Log = {
 
   level: LogLevel;
   message: string;
-  metadata: any | null;
+  metadata: JsonValue | null;
 
   createdAt: string;
 };
@@ -62,7 +74,11 @@ export type TimelineEvent =
       at: string;
       data: TraceStep;
     }
-  | { kind: "LOG"; at: string; data: Log };
+  | {
+      kind: "LOG";
+      at: string;
+      data: Log;
+    };
 
 export type TraceTimelineResponse = {
   trace: {

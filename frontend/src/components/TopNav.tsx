@@ -4,14 +4,26 @@ import Link from "next/link";
 import LogoutButton from "./LogoutButton";
 import styles from "./TopNav.module.css";
 import { getToken } from "@/lib/auth";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+function subscribe() {
+  return () => {};
+}
+
+function getClientSnapshot() {
+  return Boolean(getToken());
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export default function TopNav() {
-  const [authed, setAuthed] = useState(false);
-
-  useEffect(() => {
-    setAuthed(Boolean(getToken()));
-  }, []);
+  const authed = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   return (
     <div className={styles.nav}>
