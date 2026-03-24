@@ -39,8 +39,9 @@ export default function LoginPage() {
       const res = await apiPost<AuthResponse>(url, payload);
       setToken(res.token);
       router.push("/traces");
-    } catch (error: any) {
-      setError(error.message ?? "An Error Occurred");
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Login failed";
+      setError(message);
     } finally {
       setLoading(false);
     }
