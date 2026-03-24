@@ -13,7 +13,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import AuthGate from "@/components/AuthGate";
 
 import AddTraceModal from "@/components/AddTraceModal";
-import { useToast } from "@/components/ToastHost"; // optional if you want extra toasts
+//import { useToast } from "@/components/ToastHost"; // optional if you want extra toasts
 
 import styles from "./page.module.css";
 
@@ -38,8 +38,10 @@ export default function TracePage() {
       setError(null);
       const data = await apiGet<TraceListItem[]>("/traces");
       setTraces(data);
-    } catch (error: any) {
-      setError(error?.message ?? "Failed to Load Traces");
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Failed to Load Traces";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -123,8 +125,10 @@ export default function TracePage() {
     try {
       await apiDelete(`/traces/${id}`);
       await loadTraces();
-    } catch (error: any) {
-      setError(error?.message ?? "Failed To Delete Trace");
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Failed To Delete Trace";
+      setError(message);
     }
   }
 

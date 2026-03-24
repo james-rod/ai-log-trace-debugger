@@ -79,10 +79,9 @@ export default function TraceTimelinePage() {
 
         // Error detection
         const isError =
-          (ev.kind === "LOG" && (ev.data as any).level === "ERROR") ||
+          (ev.kind === "LOG" && ev.data.level === "ERROR") ||
           (ev.kind === "STEP" &&
-            ((ev.data as any).stepType === "ERROR" ||
-              Boolean((ev.data as any).errorMessage)));
+            (ev.data.stepType === "ERROR" || Boolean(ev.data.errorMessage)));
 
         if (errorsOnly && !isError) return false;
 

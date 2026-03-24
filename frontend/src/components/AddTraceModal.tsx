@@ -232,8 +232,10 @@ export default function AddTraceModal({ open, onClose, onCreated }: Props) {
       setTraceName("");
       setLogs([{ level: "INFO", message: "" }]);
       await onCreated();
-    } catch (e: any) {
-      toast.error(e?.message ?? "❌ Failed to create trace");
+    } catch (e: unknown) {
+      const message =
+        e instanceof Error ? e.message : "❌ Failed to create trace";
+      toast.error(message);
     } finally {
       setSubmitting(false);
     }
