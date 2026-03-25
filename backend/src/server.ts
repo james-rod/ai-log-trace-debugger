@@ -51,18 +51,19 @@ console.log("✅ requestLogger mounted");
  * -----------------------
  */
 
-app.use("/auth", authRoutes);
-app.use("/traces", traceRoutes);
-app.use("/timelines", timelineRoutes);
+app.get("/", (_req, res) => {
+  res.send("ROOT OK");
+});
+
 app.get("/health", (_req, res) => {
   res.json({ status: "ok", from: "server.ts health route" });
 });
 
-app.use("/ai", aiRoutes);
+app.use("/auth", authRoutes);
+app.use("/traces", traceRoutes);
+app.use("/timelines", timelineRoutes);
 
-app.get("/", (_req, res) => {
-  res.send("ROOT OK");
-});
+app.use("/ai", aiRoutes);
 
 /**
  * -----------------------

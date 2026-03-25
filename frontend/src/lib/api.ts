@@ -9,6 +9,7 @@ function offlineHint() {
     `Check that the backend is running and that ${API_BASE}/health is reachable.`
   );
 }
+console.log("API_BASE:", API_BASE);
 
 async function handleAuthErrors(res: Response) {
   if (res.status === 401) clearToken();
